@@ -6,7 +6,7 @@ vtk_module(vtkRenderingFreeType
   DEPENDS
     vtkRenderingCore
     vtkfreetype
-    vtkftgl
+    #vtkftgl
   TEST_DEPENDS
     vtkRenderingMatplotlib
     vtkTestingRendering

@@ -1,13 +1,12 @@
 set(Module_SRCS
   vtkFreeTypeStringToImage.cxx
-  vtkFreeTypeUtilities.cxx
+  #vtkFreeTypeUtilities.cxx
   vtkFreeTypeTools.cxx
-  vtkMathTextFreeTypeTextRenderer.cxx
-  vtkMathTextUtilities.cxx
-  vtkTextActor3D.cxx
-  vtkTextActor.cxx
-  vtkTextRendererStringToImage.cxx
-  vtkScaledTextActor.cxx
+  #vtkMathTextFreeTypeTextRenderer.cxx
+  #vtkMathTextUtilities.cxx
+  #vtkTextActor3D.cxx
+  #vtkTextActor.cxx
+  #vtkScaledTextActor.cxx
   vtkVectorText.cxx
 
   ${CMAKE_CURRENT_BINARY_DIR}/${vtk-module}ObjectFactory.cxx
@@ -44,23 +43,23 @@ set_source_files_properties(
   WRAP_EXCLUDE
   )
 
-# Override some rendering classes. Create object factory:
-list(APPEND vtk_module_overrides "vtkTextRenderer")
-set(vtk_module_vtkTextRenderer_override "vtkMathTextFreeTypeTextRenderer")
+# # Override some rendering classes. Create object factory:
+# list(APPEND vtk_module_overrides "vtkTextRenderer")
+# set(vtk_module_vtkTextRenderer_override "vtkMathTextFreeTypeTextRenderer")
 
-# Now we iterate and create that class file...
-foreach(_class ${vtk_module_overrides})
-  set(_override ${vtk_module_${_class}_override})
-  set(_vtk_override_includes "${_vtk_override_includes}
-#include \"${_override}.h\"")
-  set(_vtk_override_creates "${_vtk_override_creates}
-VTK_CREATE_CREATE_FUNCTION(${_override})")
-  set(_vtk_override_do "${_vtk_override_do}
-  this->RegisterOverride(\"${_class}\",
-                         \"${_override}\",
-                         \"Override for ${vtk-module} module\", 1,
-                         vtkObjectFactoryCreate${_override});")
-endforeach()
+# # Now we iterate and create that class file...
+# foreach(_class ${vtk_module_overrides})
+#   set(_override ${vtk_module_${_class}_override})
+#   set(_vtk_override_includes "${_vtk_override_includes}
+# #include \"${_override}.h\"")
+#   set(_vtk_override_creates "${_vtk_override_creates}
+# VTK_CREATE_CREATE_FUNCTION(${_override})")
+#   set(_vtk_override_do "${_vtk_override_do}
+#   this->RegisterOverride(\"${_class}\",
+#                          \"${_override}\",
+#                          \"Override for ${vtk-module} module\", 1,
+#                          vtkObjectFactoryCreate${_override});")
+# endforeach()
 
 # Now let's create the object factory classes
 string(TOUPPER ${vtk-module} VTK-MODULE)
