@@ -90,7 +90,7 @@ ENDIF (UNIX)
 # Mac OS X frameworks, and so is disabled if using X11.
 #
 IF (APPLE AND NOT VTK_USE_X)
-  SET (VTKFREETYPE_MAC_FONT_SUPPORT 1)
+  SET (VTKFREETYPE_MAC_FONT_SUPPORT 0)
 ENDIF (APPLE AND NOT VTK_USE_X)
 
 #
@@ -132,13 +132,13 @@ IF(NOT VTK_INSTALL_NO_DEVELOPMENT)
     DESTINATION ${VTK_INSTALL_INCLUDE_DIR_CM24}/vtkfreetype/include
     COMPONENT Development)
 
-  file(GLOB freetype_headers 
+  file(GLOB freetype_headers
     "${VTKFREETYPE_SOURCE_DIR}/include/freetype/*.h")
   INSTALL(FILES ${freetype_headers}
     DESTINATION ${VTK_INSTALL_INCLUDE_DIR_CM24}/vtkfreetype/include/freetype
     COMPONENT Development)
 
-  file(GLOB freetype_config_headers 
+  file(GLOB freetype_config_headers
     "${VTKFREETYPE_SOURCE_DIR}/include/freetype/config/*.h")
   if(freetype_config_headers_exclude)
     list(REMOVE_ITEM freetype_config_headers ${freetype_config_headers_exclude})
